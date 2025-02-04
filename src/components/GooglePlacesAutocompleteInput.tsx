@@ -1,7 +1,7 @@
 import { useState, useCallback } from 'react'
 import { Input, List, Spin } from 'antd'
 import debounce from 'lodash.debounce'
-import { fetchGooglePlace } from '../utils'
+import { fetchGooglePlace, getCoordinatesByPlaceId } from '../utils'
 
 const GooglePlacesAutocomplete = () => {
   const [loading, setLoading] = useState(false)
@@ -44,16 +44,22 @@ const GooglePlacesAutocomplete = () => {
         value={inputValue}
         onChange={handleInputChange}
       />
+
       {loading && (
         <div style={{ marginTop: 20, textAlign: 'center' }}>
           <Spin />
         </div>
       )}
+
       {predictions.length > 0 && (
         <List
           bordered
           dataSource={predictions}
-          renderItem={(item) => <List.Item>{item.description}</List.Item>}
+          renderItem={(item) => (
+            <List.Item onClick={() => getCoordinatesByPlaceId(item.place_id)}>
+              {item.description}
+            </List.Item>
+          )}
           style={{ marginTop: 20 }}
         />
       )}
