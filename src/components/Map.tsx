@@ -3,6 +3,7 @@ import 'leaflet/dist/leaflet.css'
 import { useEffect, useState } from 'react'
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet'
 import { useAppSelector } from '../redux/hooks'
+import withPlacesLoading from '../hoc/withPlacesLoading'
 
 function Map() {
   const [map, setMap] = useState<L.Map | null>(null)
@@ -40,4 +41,4 @@ function Map() {
   )
 }
 
-export default Map
+export default withPlacesLoading(Map)
