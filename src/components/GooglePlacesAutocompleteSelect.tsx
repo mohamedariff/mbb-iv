@@ -6,8 +6,7 @@ import { fetchPlacePredictions, fetchCoordinates } from '../redux/placesSlice'
 
 const GooglePlacesAutocompleteSelect = () => {
   const dispatch = useAppDispatch()
-  const { places } = useAppSelector((state) => state.places)
-
+  const { places, error } = useAppSelector((state) => state.places)
   const onSearch = debounce((value: string) => {
     if (value) {
       dispatch(fetchPlacePredictions(value))

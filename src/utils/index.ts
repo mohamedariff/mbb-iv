@@ -1,3 +1,4 @@
+import { notification } from 'antd'
 import axios from 'axios'
 
 const key = import.meta.env.VITE_GOOGLE_PLACES_KEY
@@ -7,6 +8,12 @@ export const fetchGooglePlace = async (input: string) => {
 
   try {
     const response = await axios.get(endpoint, { params: { input, key } })
+    if (response.data.status !== 'OK') {
+      return notification.error({
+        message: response.data.status,
+        description: response.data.error_message
+      })
+    }
     return response.data.predictions
   } catch (error) {
     console.error('Error fetching autocomplete data:', error)
