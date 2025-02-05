@@ -1,6 +1,7 @@
 import { Card, Typography } from 'antd'
 import GooglePlacesAutocompleteSelect from './components/GooglePlacesAutocompleteSelect'
 import Map from './components/Map'
+import ErrorBoundary from './components/ErrorBoundary'
 
 const App = () => {
   return (
@@ -17,13 +18,16 @@ const App = () => {
       <Typography.Title level={1} style={{ color: 'white' }}>
         Google Places Autocomplete
       </Typography.Title>
-      <Card
-        title={<GooglePlacesAutocompleteSelect />}
-        bordered={false}
-        styles={{ body: { width: '50vw', height: '50vh' } }}
-      >
-        <Map />
-      </Card>
+
+      <ErrorBoundary>
+        <Card
+          title={<GooglePlacesAutocompleteSelect />}
+          bordered={false}
+          styles={{ body: { width: '50vw', height: '50vh' } }}
+        >
+          <Map />
+        </Card>
+      </ErrorBoundary>
     </div>
   )
 }
