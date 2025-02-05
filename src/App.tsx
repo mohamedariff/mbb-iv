@@ -6,11 +6,11 @@ const App = () => {
   return (
     <div
       style={{
-        height: '100vh',
         width: '100vw',
+        height: '100vh',
         display: 'flex',
-        flexDirection: 'column',
         alignItems: 'center',
+        flexDirection: 'column',
         justifyContent: 'center'
       }}
     >

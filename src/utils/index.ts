@@ -26,7 +26,7 @@ export const getCoordinatesByPlaceId = async (placeId: string) => {
 
     if (result?.geometry?.location) {
       const { lat, lng } = result.geometry.location
-      return { lat, lng }
+      return { lat, lng, name: result.formatted_address }
     } else {
       throw new Error('Coordinates not found in the response.')
     }
